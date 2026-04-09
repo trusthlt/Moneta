@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <!-- Primary Meta Tags -->
+  <!-- TODO: Replace with your paper title and author names -->
+  <meta name="title" content="MONETA: Multimodal Industry Classification through Geographic Information with Multi Agent Systems">
+  <!-- TODO: Write a compelling 150-160 character description of your research -->
+  <meta name="description" content="We release a multimodal industry classification benchmark using geospatial information.
+">
+  <meta name="keywords" content="Multimodal, Geospatial, Industry Classification, Benchmark">
+  <meta name="author" content="Arda Yüksel, Gabriel Thiem, Susanne Walter, Patrick Felka, Gabriela Alves Werb, Ivan Habernal ">
+  <meta name="robots" content="index, follow">
+  <meta name="language" content="English">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="TrustHLT">
+  <meta property="og:title" content="MONETA: Multimodal Industry Classification through Geographic Information with Multi Agent Systems">
+  <meta property="og:description" content="We release a multimodal industry classification benchmark using geospatial information.
+">
+  <!-- TODO: Replace with your actual website URL -->
+  <meta property="og:url" content="https://YOUR_DOMAIN.com/YOUR_PROJECT_PAGE">
+  <!-- TODO: Create a 1200x630px preview image and update path -->
+  <meta property="og:image" content="https://YOUR_DOMAIN.com/static/images/social_preview.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="MONETA: Multimodal Industry Classification through Geographic Information with Multi Agent Systems - Research Preview">
+  <meta property="article:published_time" content="2024-01-01T00:00:00.000Z">
+  <meta property="article:author" content="Yüksel, Arda">
+  <meta property="article:section" content="Research">
+  <meta property="article:tag" content="Multimodal">
+  <meta property="article:tag" content="Geospatial">
+  <meta property="article:tag" content="Industry Classification">
+  <meta property="article:tag" content="Benchmark">
+  <meta property="article:tag" content="Multi Agent Systems">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <!-- TODO: Replace with your lab/institution Twitter handle -->
+  <meta name="twitter:site" content="@YOUR_TWITTER_HANDLE">
+  <!-- TODO: Replace with first author's Twitter handle -->
+  <meta name="twitter:creator" content="@AUTHOR_TWITTER_HANDLE">
+  <!-- TODO: Same as paper title above -->
+  <meta name="twitter:title" content="MONETA: Multimodal Industry Classification through Geographic Information with Multi Agent Systems">
+  <!-- TODO: Same as description above -->
+  <meta name="twitter:description" content="We release a multimodal industry classification benchmark using geospatial information.
+">
+  <!-- TODO: Same as social preview image above -->
+  <meta name="twitter:image" content="https://YOUR_DOMAIN.com/static/images/social_preview.png">
+  <meta name="twitter:image:alt" content="MONETA: Multimodal Industry Classification through Geographic Information with Multi Agent Systems - Research Preview">
+
+  <!-- Academic/Research Specific -->
+  <meta name="citation_title" content="MONETA: Multimodal Industry Classification through Geographic Information with Multi Agent Systems">
+  <meta name="citation_author" content="Yüksel, Arda">
+  <meta name="citation_author" content="Thiem, Gabriel">
+  <meta name="citation_author" content="Walter, Susanne">
+  <meta name="citation_author" content="Felka, Patrick">
+  <meta name="citation_author" content="Alves Werb, Gabriela">
+  <meta name="citation_author" content="Habernal, Ivan">
+  <meta name="citation_publication_date" content="2026">
+  <meta name="citation_conference_title" content="ACL">
+  <meta name="citation_pdf_url" content="https://YOUR_DOMAIN.com/static/pdfs/paper.pdf">
+  
+  <!-- Additional SEO -->
+  <meta name="theme-color" content="#2563eb">
+  <meta name="msapplication-TileColor" content="#2563eb">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  
+  <!-- Preconnect for performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://ajax.googleapis.com">
+  <link rel="preconnect" href="https://documentcloud.adobe.com">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+
+
+  <!-- TODO: Replace with your paper title and authors -->
+  <title>MONETA: Multimodal Industry Classification through Geographic Information with Multi Agent Systems</title>
+  
+  <!-- Favicon and App Icons -->
+  <link rel="icon" type="image/x-icon" href="static/images/trusthlt.png">
+  <link rel="apple-touch-icon" href="static/images/trusthlt.png">
+  
+  <!-- Critical CSS - Load synchronously -->
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+  
+  <!-- Non-critical CSS - Load asynchronously -->
+  <link rel="preload" href="static/css/bulma-carousel.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" href="static/css/bulma-slider.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" href="static/css/fontawesome.all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  
+  <!-- Fallback for browsers that don't support preload -->
+  <noscript>
+    <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+    <link rel="stylesheet" href="static/css/bulma-slider.min.css">
+    <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  </noscript>
+  
+  <!-- Fonts - Optimized loading -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Defer non-critical JavaScript -->
+  <script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <script defer src="static/js/bulma-carousel.min.js"></script>
+  <script defer src="static/js/bulma-slider.min.js"></script>
+  <script defer src="static/js/index.js"></script>
+  
+  <!-- Structured Data for Academic Papers -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ScholarlyArticle",
+    "headline": "MONETA: Multimodal Industry Classification through Geographic Information with Multi Agent Systems",
+    "description": "\We release a multimodal industry classification benchmark using geospatial information.",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Arda Yüksel",
+        "affiliation": [
+          {
+            "@type": "Organization",
+            "name": "TrustHLT"
+          },
+          {
+            "@type": "Organization",
+            "name": "TU Darmstadt"
+          }
+        ]        
+      },
+      {
+        "@type": "Person",
+        "name": "Gabriel Thiem",
+        "affiliation": [
+          {
+            "@type": "Organization",
+            "name": "TU Darmstadt"
+          },
+          {
+            "@type": "Organization",
+            "name": "Deutsche Bundesbank"
+          }
+        ]
+      },
+      {
+        "@type": "Person",
+        "name": "Susanne Walter",
+        "affiliation": {
+          "@type": "Organization",
+          "name": "Deutsche Bundesbank"
+        }
+      },
+      {
+        "@type": "Person",
+        "name": "Patrick Felka",
+        "affiliation": {
+          "@type": "Organization",
+          "name": "Deutsche Bundesbank"
+        }
+      },
+      {
+        "@type": "Person",
+        "name": "Gabriela Alves Werb",
+        "affiliation": [          
+          {
+            "@type": "Organization",
+            "name": "Deutsche Bundesbank"
+          },
+          {
+            "@type": "Organization",
+            "name": "Frankfurt University of Applied Sciences"
+          },
+        ]
+      },
+      {
+        "@type": "Person",
+        "name": "Ivan Habernal",
+        "affiliation": [
+          {
+            "@type": "Organization",
+            "name": "TrustHLT"
+          },
+          {
+            "@type": "Organization",
+            "name": "Research Center for Trustworthy Data Science and Security, Ruhr University Bochum"
+          }
+        ]
+      }
+    ],
+    "datePublished": "2024-01-01",
+    "publisher": {
+      "@type": "Organization",
+      "name": "ACL",
+    },
+    "url": "https://YOUR_DOMAIN.com/YOUR_PROJECT_PAGE",
+    "image": "https://YOUR_DOMAIN.com/static/images/social_preview.png",
+    "keywords": [ "Multimodal", "Geospatial", "Industry Classification", "Benchmark" ],
+    "abstract": "Industry classification schemes are integral parts of public and corporate databases as they classify businesses based on economic activity. Due to the size of the company registers, manual annotation is costly, and fine-tuning models with every update in industry classification schemes requires significant data collection. We replicate the manual expert verification by using existing or easily retrievable multimodal resources for industry classification. We present \texttt{MONETA}, the first multimodal industry classification benchmark that contains text sources (Website, Wikipedia, Wikidata) and geospatial information paralleling company addresses (OpenStreetMap and satellite imagery). Our dataset enlists 1,000 businesses in Europe with 20 economic activity labels according to EU guidelines (NACE). Our training-free and resource-agnostic Multimodal Large Language Model (MLLM) baseline reaches 62.10% accuracy. Our results indicate an increase of up to 22.80% with the combination of multi-turn design, context enrichment, and classification explanations. We will release our dataset and the enhanced guidelines.",
+    "citation": "BIBTEX_CITATION_HERE",
+    "isAccessibleForFree": true,
+    "license": "https://creativecommons.org/licenses/by/4.0/",
+    "mainEntity": {
+      "@type": "WebPage",
+      "@id": "https://YOUR_DOMAIN.com/YOUR_PROJECT_PAGE"
+    },
+    "about": [
+      {
+        "@type": "Thing",
+        "name": "Multimodal"
+      },
+      {
+        "@type": "Thing", 
+        "name": "Geospatial"
+      },
+      {
+        "@type": "Thing", 
+        "name": "Industry Classification"
+      },
+      {
+        "@type": "Thing", 
+        "name": "Benchmark"
+      }
+    ]
+  }
+  </script>
+  
+  <!-- Website/Organization Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "INSTITUTION_OR_LAB_NAME",
+    "url": "https://YOUR_INSTITUTION_WEBSITE.com",
+    "logo": "https://YOUR_DOMAIN.com/static/images/favicon.ico",
+    "sameAs": [
+      "https://twitter.com/YOUR_TWITTER_HANDLE",
+      "https://github.com/YOUR_GITHUB_USERNAME"
+    ]
+  }
+  </script>
+</head>
+<body>
+
+
+  <!-- Scroll to Top Button -->
+  <button class="scroll-to-top" onclick="scrollToTop()" title="Scroll to top" aria-label="Scroll to top">
+    <i class="fas fa-chevron-up"></i>
+  </button>
+
+
+
+  <main id="main-content">
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <!-- TODO: Replace with your paper title -->
+            <h1 class="title is-1 publication-title">MONETA: Multimodal Industry Classification through Geographic Information with Multi Agent Systems</h1>
+            <div class="is-size-5 publication-authors">
+              <!-- TODO: Add affiliations with superscripts-->
+              <span class="author-block">
+                <a href="https://github.com/ArdaYueksel" target="_blank">Arda Yüksel</a> <sup>1 , 2</sup>
+              </span>
+              <span class="author-block">
+                <a href="https://www.linkedin.com/in/gabriel-thiem/" target="_blank">Gabriel Thiem</a> <sup>2, 3</sup>
+              </span>
+                <span class="author-block">
+                  <a href="https://www.bundesbank.de/en/bundesbank/research/rdsc/about-the-rdsc/dr-patrick-felka-604580" target="_blank">Patrick Felka</a> <sup>3</sup>
+                </span>
+                <span class="author-block">
+                  <a href="https://www.bundesbank.de/en/bundesbank/research/rdsc/about-the-rdsc/dr-susanne-walter-868690" target="_blank">Susanne Walter</a> <sup>3</sup>
+                </span>
+                <span class="author-block">
+                  <a href="https://www.frankfurt-university.de/de/hochschule/fachbereich-2-informatik-und-ingenieurwissenschaften/kontakt/professorinnen-und-professoren-im-fachbereich-2/gabriela-alves-werb/" target="_blank">Gabriela Alves Werb</a> <sup>3, 4</sup>
+                </span>
+                <span class="author-block">
+                  <a href="https://rc-trust.ai/about/scientists/ivan-habernal" target="_blank">Ivan Habernal</a> <sup>1, 5</sup>
+                </span>
+              </div>
+                <!-- Affilation block, smaller font-->
+                  <div class="is-size-5 publication-authors">
+                    <span><sup>1</sup> TrustHLT, <sup>2</sup> TU Darmstadt, <sup>3</sup> Deutsche Bundesbank, <sup>4</sup> Frankfurt University of Applied Sciences, <br><sup>5</sup> Research Center for Trustworthy Data Science and Security, Ruhr University Bochum
+                    </span>
+                  </div>
+
+                  <div class="column has-text-centered">
+                    <div class="publication-links">
+                         <!-- TODO: Update with your arXiv paper ID -->
+                      <span class="link-block">
+                        <a href="https://arxiv.org/pdf/<ARXIV PAPER ID>.pdf" target="_blank"
+                        class="external-link button is-normal is-rounded is-dark">
+                        <span class="icon">
+                          <i class="fas fa-file-pdf"></i>
+                        </span>
+                        <span>Paper</span>
+                      </a>
+                    </span>
+
+
+                  <!-- TODO: Replace with your GitHub repository URL -->
+                  <span class="link-block">
+                    <a href="https://github.com/YOUR REPO HERE" target="_blank"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>Code</span>
+                  </a>
+                </span>
+
+                <!-- TODO: Update with your arXiv paper ID -->
+                <span class="link-block">
+                  <a href="https://arxiv.org/abs/<ARXIV PAPER ID>" target="_blank"
+                  class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MONETA Image -->
+<section class="hero teaser">
+  <div class="hero-body">
+    <div class="container has-text-centered">
+      <img src="static/images/moneta.png" alt="MONETA Zero Shot and Multi Turn Comparison" class="teaser-image" loading="lazy"/>
+    </div>
+  </div>
+</section>
+<!-- Dataset maps -->
+<section class="section">
+  <div class="container is-max-widescreen">
+    <div class="columns is-centered">
+      <div class="column is-full">
+        <div class="has-text-centered" style="margin-bottom: 1.75rem;">
+          <h2 class="title is-3">Dataset Maps</h2>
+          <p class="subtitle is-6" style="max-width: 920px; margin: 0 auto;">
+            Explore the geographic coverage of MONETA and MONETA-10K directly on the project page.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="columns is-variable is-5 is-centered">
+      <div class="column is-two-thirds-desktop is-12-tablet">
+        <div style="background: #ffffff; border: 1px solid #d9dee8; border-radius: 18px; padding: 1rem; box-shadow: 0 18px 40px rgba(15, 23, 42, 0.08);">
+          <div class="has-text-centered" style="margin-bottom: 1rem;">
+            <div class="buttons is-centered" style="margin-bottom: 0.75rem;">
+              <button
+                id="map-toggle-moneta"
+                class="button is-dark is-rounded"
+                type="button"
+                onclick="switchDatasetMap('moneta')"
+              >
+                MONETA
+              </button>
+              <button
+                id="map-toggle-moneta-10k"
+                class="button is-light is-rounded"
+                type="button"
+                onclick="switchDatasetMap('moneta_10k')"
+              >
+                MONETA-10K
+              </button>
+            </div>
+            <h3 id="dataset-map-title" class="title is-5" style="margin-bottom: 0.5rem;">MONETA</h3>
+            <p id="dataset-map-description" class="content is-size-6" style="margin-bottom: 1rem;">1,000 annotated businesses across Europe.</p>
+          </div>
+          <div style="position: relative; width: 100%; padding-top: 62%; border-radius: 14px; overflow: hidden; background: #f4f7fb;">
+            <iframe
+              id="dataset-map-frame"
+              src="plots/moneta_leaflet.html"
+              title="MONETA dataset map"
+              loading="lazy"
+              style="position: absolute; inset: 0; width: 100%; height: 100%; border: 0;"
+            ></iframe>
+          </div>
+        </div>
+      </div>
+      <div class="column is-one-third-desktop is-12-tablet">
+        <figure style="background: #ffffff; border: 1px solid #d9dee8; border-radius: 18px; padding: 1rem 1rem 0.8rem; box-shadow: 0 18px 40px rgba(15, 23, 42, 0.08); height: 100%;">
+          <figcaption class="title is-6" style="margin-bottom: 0.9rem;">NACE Sections</figcaption>
+          <div style="display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); column-gap:1rem; row-gap:0.55rem; font-size:0.84rem; line-height:1.3;">
+            <div style="display:flex; align-items:flex-start; gap:0.5rem; min-width:0;"><span style="width:11px;height:11px;border-radius:2px;background:#1b9e77;display:inline-block;flex:none;margin-top:0.2rem;"></span><span>A. Agriculture, Forestry and Fishing</span></div>
+            <div style="display:flex; align-items:flex-start; gap:0.5rem; min-width:0;"><span style="width:11px;height:11px;border-radius:2px;background:#cab2d6;display:inline-block;flex:none;margin-top:0.2rem;"></span><span>K. Financial and Insurance Activities</span></div>
+            <div style="display:flex; align-items:flex-start; gap:0.5rem; min-width:0;"><span style="width:11px;height:11px;border-radius:2px;background:#d95f02;display:inline-block;flex:none;margin-top:0.2rem;"></span><span>B. Mining and Quarrying</span></div>
+            <div style="display:flex; align-items:flex-start; gap:0.5rem; min-width:0;"><span style="width:11px;height:11px;border-radius:2px;background:#fdbf6f;display:inline-block;flex:none;margin-top:0.2rem;"></span><span>L. Real Estate Activities</span></div>
+            <div style="display:flex; align-items:flex-start; gap:0.5rem; min-width:0;"><span style="width:11px;height:11px;border-radius:2px;background:#7570b3;display:inline-block;flex:none;margin-top:0.2rem;"></span><span>C. Manufacturing</span></div>
+            <div style="display:flex; align-items:flex-start; gap:0.5rem; min-width:0;"><span style="width:11px;height:11px;border-radius:2px;background:#ff7f00;display:inline-block;flex:none;margin-top:0.2rem;"></span><span>M. Professional, Scientific and Technical Activities</span></div>
+            <div style="display:flex; align-items:flex-start; gap:0.5rem; min-width:0;"><span style="width:11px;height:11px;border-radius:2px;background:#e7298a;display:inline-block;flex:none;margin-top:0.2rem;"></span><span>D. Electricity, Gas, Steam and Air Conditioning Supply</span></div>
+            <div style="display:flex; align-items:flex-start; gap:0.5rem; min-width:0;"><span style="width:11px;height:11px;border-radius:2px;background:#6a3d9a;display:inline-block;flex:none;margin-top:0.2rem;"></span><span>N. Administrative and Support Service Activities</span></div>
+            <div style="display:flex; align-items:flex-start; gap:0.5rem; min-width:0;"><span style="width:11px;height:11px;border-radius:2px;background:#66a61e;display:inline-block;flex:none;margin-top:0.2rem;"></span><span>E. Water Supply; Sewerage, Waste Management and Remediation</span></div>
+            <div style="display:flex; align-items:flex-start; gap:0.5rem; min-width:0;"><span style="width:11px;height:11px;border-radius:2px;background:#b15928;display:inline-block;flex:none;margin-top:0.2rem;"></span><span>O. Public Administration and Defence; Compulsory Social Security</span></div>
+            <div style="display:flex; align-items:flex-start; gap:0.5rem; min-width:0;"><span style="width:11px;height:11px;border-radius:2px;background:#e6ab02;display:inline-block;flex:none;margin-top:0.2rem;"></span><span>F. Construction</span></div>
+            <div style="display:flex; align-items:flex-start; gap:0.5rem; min-width:0;"><span style="width:11px;height:11px;border-radius:2px;background:#8dd3c7;display:inline-block;flex:none;margin-top:0.2rem;"></span><span>P. Education</span></div>
+            <div style="display:flex; align-items:flex-start; gap:0.5rem; min-width:0;"><span style="width:11px;height:11px;border-radius:2px;background:#a6761d;display:inline-block;flex:none;margin-top:0.2rem;"></span><span>G. Wholesale and Retail Trade; Repair of Motor Vehicles and Motorcycles</span></div>
+            <div style="display:flex; align-items:flex-start; gap:0.5rem; min-width:0;"><span style="width:11px;height:11px;border-radius:2px;background:#ffffb3;display:inline-block;flex:none;margin-top:0.2rem;"></span><span>Q. Human Health and Social Work Activities</span></div>
+            <div style="display:flex; align-items:flex-start; gap:0.5rem; min-width:0;"><span style="width:11px;height:11px;border-radius:2px;background:#1f78b4;display:inline-block;flex:none;margin-top:0.2rem;"></span><span>H. Transportation and Storage</span></div>
+            <div style="display:flex; align-items:flex-start; gap:0.5rem; min-width:0;"><span style="width:11px;height:11px;border-radius:2px;background:#bebada;display:inline-block;flex:none;margin-top:0.2rem;"></span><span>R. Arts, Entertainment and Recreation</span></div>
+            <div style="display:flex; align-items:flex-start; gap:0.5rem; min-width:0;"><span style="width:11px;height:11px;border-radius:2px;background:#b2df8a;display:inline-block;flex:none;margin-top:0.2rem;"></span><span>I. Accommodation and Food Service Activities</span></div>
+            <div style="display:flex; align-items:flex-start; gap:0.5rem; min-width:0;"><span style="width:11px;height:11px;border-radius:2px;background:#80b1d3;display:inline-block;flex:none;margin-top:0.2rem;"></span><span>S. Other Service Activities</span></div>
+            <div style="display:flex; align-items:flex-start; gap:0.5rem; min-width:0;"><span style="width:11px;height:11px;border-radius:2px;background:#fb9a99;display:inline-block;flex:none;margin-top:0.2rem;"></span><span>J. Information and Communication</span></div>
+            <div style="display:flex; align-items:flex-start; gap:0.5rem; min-width:0;"><span style="width:11px;height:11px;border-radius:2px;background:#fdb462;display:inline-block;flex:none;margin-top:0.2rem;"></span><span>T. Activities of Households as Employers; Undifferentiated Household Activities</span></div>
+            <div style="display:flex; align-items:flex-start; gap:0.5rem; min-width:0;"><span style="width:11px;height:11px;border-radius:2px;background:#b3de69;display:inline-block;flex:none;margin-top:0.2rem;"></span><span>U. Activities of Extraterritorial Organisations and Bodies</span></div>
+          </div>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+<script>
+  const DATASET_MAPS = {
+    moneta: {
+      src: "plots/moneta_leaflet.html",
+      title: "MONETA",
+      description: "1,000 annotated businesses across Europe.",
+      buttonId: "map-toggle-moneta",
+    },
+    moneta_10k: {
+      src: "plots/moneta_10k_leaflet.html",
+      title: "MONETA-10K",
+      description: "10,000 examples with interactive clustered map exploration.",
+      buttonId: "map-toggle-moneta-10k",
+    },
+  };
+
+  function switchDatasetMap(datasetKey) {
+    const config = DATASET_MAPS[datasetKey];
+    if (!config) {
+      return;
+    }
+
+    const frame = document.getElementById("dataset-map-frame");
+    const title = document.getElementById("dataset-map-title");
+    const description = document.getElementById("dataset-map-description");
+
+    frame.src = config.src;
+    frame.title = `${config.title} dataset map`;
+    title.textContent = config.title;
+    description.textContent = config.description;
+
+    Object.values(DATASET_MAPS).forEach((item) => {
+      const button = document.getElementById(item.buttonId);
+      button.classList.remove("is-dark");
+      button.classList.add("is-light");
+    });
+
+    const activeButton = document.getElementById(config.buttonId);
+    activeButton.classList.remove("is-light");
+    activeButton.classList.add("is-dark");
+  }
+</script>
+<!-- Paper abstract -->
+<section class="section hero is-light">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Industry classification schemes are integral parts of public and corporate databases as they classify businesses based on economic activity. Due to the size of the company registers, manual annotation is costly, and fine-tuning models with every update in industry classification schemes requires significant data collection. We replicate the manual expert verification by using existing or easily retrievable multimodal resources for industry classification. We present MONETA, the first multimodal industry classification benchmark that contains text sources (Website, Wikipedia, Wikidata) and geospatial information paralleling company addresses (OpenStreetMap and satellite imagery). Our dataset enlists 1,000 businesses in Europe with 20 economic activity labels according to EU guidelines (NACE). Our training-free and resource-agnostic Multimodal Large Language Model (MLLM) baseline reaches 62.10% accuracy. Our results indicate an increase of up to 22.80% with the combination of multi-turn design, context enrichment, and classification explanations. We will release our dataset and the enhanced guidelines.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End paper abstract -->
+
+
+<!-- Qualitative Result Analysis -->
+<section class="section hero">
+  <div class="container is max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-five-sixths">
+        <h2 class="title is-3">Financial Insights from Non Financial Multimodal Sources</h2>
+        <img src="static/images/qualitative_analysis.png" alt="Qualitative Analysis of Model Performance" class="teaser-image" loading="lazy" width="50%"/>
+        <h2 class="content has-text-justified">
+          We compare financial insight analysis from Geospatial (image) and Web (text) sources. Our multi-turn pipeline extracts financial clues grouped by Industry classification sections. While websites are often the most effective source, when they are absent or less informative, satellite imagery can instead enable correct identification of the industry.
+        </h2>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!--BibTex citation -->
+  <section class="section" id="BibTeX">
+    <div class="container is-max-desktop content">
+      <div class="bibtex-header">
+        <h2 class="title">BibTeX</h2>
+        <button class="copy-bibtex-btn" onclick="copyBibTeX()" title="Copy BibTeX to clipboard">
+          <i class="fas fa-copy"></i>
+          <span class="copy-text">Copy</span>
+        </button>
+      </div>
+      <pre id="bibtex-code"><code>@article{YourPaperKey2024,
+  title={Your Paper Title Here},
+  author={First Author and Second Author and Third Author},
+  journal={Conference/Journal Name},
+  year={2024},
+  url={https://your-domain.com/your-project-page}
+}</code></pre>
+    </div>
+</section>
+<!--End BibTex citation -->
+
+
+  <footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+
+          <p>
+            This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
+            You are free to borrow the source code of this website, we just ask that you link back to this page in the footer. <br> This website is licensed under a <a rel="license"  href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Statcounter tracking code -->
+  
+<!-- You can add a tracker to track page visits by creating an account at statcounter.com -->
+
+    <!-- End of Statcounter Code -->
+
+  </body>
+  </html>
