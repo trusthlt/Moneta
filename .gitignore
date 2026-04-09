@@ -30,3 +30,4 @@ __pycache__
 *.txt
 *.osm.pbf
 *.lock
+data/exionaics/exionaics_train.jsonl
