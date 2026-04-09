@@ -1,14 +1,16 @@
 cache/
+notebooks/
 .cache/
 .config/
 .local/
 _old/
 .idea/
+.venv/
 .vscode/
 results/
-results_combined/
+Makefile
+pyproject.toml
 .env
-.venv
 __pycache__
 *.pyc
 *.pyo
@@ -30,4 +32,3 @@ __pycache__
 *.txt
 *.osm.pbf
 *.lock
-data/exionaics/exionaics_train.jsonl

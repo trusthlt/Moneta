@@ -263,7 +263,6 @@
       <div class="container is-max-desktop">
         <div class="columns is-centered">
           <div class="column has-text-centered">
-            <!-- TODO: Replace with your paper title -->
             <h1 class="title is-1 publication-title">MONETA: Multimodal Industry Classification through Geographic Information with Multi Agent Systems</h1>
             <div class="is-size-5 publication-authors">
               <!-- TODO: Add affiliations with superscripts-->
@@ -306,9 +305,8 @@
                     </span>
 
 
-                  <!-- TODO: Replace with your GitHub repository URL -->
                   <span class="link-block">
-                    <a href="https://github.com/YOUR REPO HERE" target="_blank"
+                    <a href="https://github.com/trusthlt/Moneta" target="_blank"
                     class="external-link button is-normal is-rounded is-dark">
                     <span class="icon">
                       <i class="fab fa-github"></i>
@@ -316,16 +314,6 @@
                     <span>Code</span>
                   </a>
                 </span>
-
-                <!-- TODO: Update with your arXiv paper ID -->
-                <span class="link-block">
-                  <a href="https://arxiv.org/abs/<ARXIV PAPER ID>" target="_blank"
-                  class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                    <i class="ai ai-arxiv"></i>
-                  </span>
-                  <span>arXiv</span>
-                </a>
               </span>
             </div>
           </div>
@@ -356,8 +344,8 @@
         </div>
       </div>
     </div>
-    <div class="columns is-variable is-5 is-centered">
-      <div class="column is-two-thirds-desktop is-12-tablet">
+    <div class="columns is-centered">
+      <div class="column is-11-desktop is-12-tablet">
         <div style="background: #ffffff; border: 1px solid #d9dee8; border-radius: 18px; padding: 1rem; box-shadow: 0 18px 40px rgba(15, 23, 42, 0.08);">
           <div class="has-text-centered" style="margin-bottom: 1rem;">
             <div class="buttons is-centered" style="margin-bottom: 0.75rem;">
@@ -379,9 +367,10 @@
               </button>
             </div>
             <h3 id="dataset-map-title" class="title is-5" style="margin-bottom: 0.5rem;">MONETA</h3>
-            <p id="dataset-map-description" class="content is-size-6" style="margin-bottom: 1rem;">1,000 annotated businesses across Europe.</p>
+            <p id="dataset-map-description" class="content is-size-6" style="margin-bottom: 0.4rem;">1,000 annotated businesses across Europe.</p>
+            <p class="content is-size-7" style="margin-bottom: 0; color: #64748b;">The legend is embedded inside the map, and clicking a marker opens the company detail card.</p>
           </div>
-          <div style="position: relative; width: 100%; padding-top: 62%; border-radius: 14px; overflow: hidden; background: #f4f7fb;">
+          <div style="position: relative; width: 100%; padding-top: 60%; border-radius: 14px; overflow: hidden; background: #f4f7fb;">
             <iframe
               id="dataset-map-frame"
               src="plots/moneta_leaflet.html"
@@ -391,34 +380,6 @@
             ></iframe>
           </div>
         </div>
-      </div>
-      <div class="column is-one-third-desktop is-12-tablet">
-        <figure style="background: #ffffff; border: 1px solid #d9dee8; border-radius: 18px; padding: 1rem 1rem 0.8rem; box-shadow: 0 18px 40px rgba(15, 23, 42, 0.08); height: 100%;">
-          <figcaption class="title is-6" style="margin-bottom: 0.9rem;">NACE Sections</figcaption>
-          <div style="display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); column-gap:1rem; row-gap:0.55rem; font-size:0.84rem; line-height:1.3;">
-            <div style="display:flex; align-items:flex-start; gap:0.5rem; min-width:0;"><span style="width:11px;height:11px;border-radius:2px;background:#1b9e77;display:inline-block;flex:none;margin-top:0.2rem;"></span><span>A. Agriculture, Forestry and Fishing</span></div>
-            <div style="display:flex; align-items:flex-start; gap:0.5rem; min-width:0;"><span style="width:11px;height:11px;border-radius:2px;background:#cab2d6;display:inline-block;flex:none;margin-top:0.2rem;"></span><span>K. Financial and Insurance Activities</span></div>
-            <div style="display:flex; align-items:flex-start; gap:0.5rem; min-width:0;"><span style="width:11px;height:11px;border-radius:2px;background:#d95f02;display:inline-block;flex:none;margin-top:0.2rem;"></span><span>B. Mining and Quarrying</span></div>
-            <div style="display:flex; align-items:flex-start; gap:0.5rem; min-width:0;"><span style="width:11px;height:11px;border-radius:2px;background:#fdbf6f;display:inline-block;flex:none;margin-top:0.2rem;"></span><span>L. Real Estate Activities</span></div>
-            <div style="display:flex; align-items:flex-start; gap:0.5rem; min-width:0;"><span style="width:11px;height:11px;border-radius:2px;background:#7570b3;display:inline-block;flex:none;margin-top:0.2rem;"></span><span>C. Manufacturing</span></div>
-            <div style="display:flex; align-items:flex-start; gap:0.5rem; min-width:0;"><span style="width:11px;height:11px;border-radius:2px;background:#ff7f00;display:inline-block;flex:none;margin-top:0.2rem;"></span><span>M. Professional, Scientific and Technical Activities</span></div>
-            <div style="display:flex; align-items:flex-start; gap:0.5rem; min-width:0;"><span style="width:11px;height:11px;border-radius:2px;background:#e7298a;display:inline-block;flex:none;margin-top:0.2rem;"></span><span>D. Electricity, Gas, Steam and Air Conditioning Supply</span></div>
-            <div style="display:flex; align-items:flex-start; gap:0.5rem; min-width:0;"><span style="width:11px;height:11px;border-radius:2px;background:#6a3d9a;display:inline-block;flex:none;margin-top:0.2rem;"></span><span>N. Administrative and Support Service Activities</span></div>
-            <div style="display:flex; align-items:flex-start; gap:0.5rem; min-width:0;"><span style="width:11px;height:11px;border-radius:2px;background:#66a61e;display:inline-block;flex:none;margin-top:0.2rem;"></span><span>E. Water Supply; Sewerage, Waste Management and Remediation</span></div>
-            <div style="display:flex; align-items:flex-start; gap:0.5rem; min-width:0;"><span style="width:11px;height:11px;border-radius:2px;background:#b15928;display:inline-block;flex:none;margin-top:0.2rem;"></span><span>O. Public Administration and Defence; Compulsory Social Security</span></div>
-            <div style="display:flex; align-items:flex-start; gap:0.5rem; min-width:0;"><span style="width:11px;height:11px;border-radius:2px;background:#e6ab02;display:inline-block;flex:none;margin-top:0.2rem;"></span><span>F. Construction</span></div>
-            <div style="display:flex; align-items:flex-start; gap:0.5rem; min-width:0;"><span style="width:11px;height:11px;border-radius:2px;background:#8dd3c7;display:inline-block;flex:none;margin-top:0.2rem;"></span><span>P. Education</span></div>
-            <div style="display:flex; align-items:flex-start; gap:0.5rem; min-width:0;"><span style="width:11px;height:11px;border-radius:2px;background:#a6761d;display:inline-block;flex:none;margin-top:0.2rem;"></span><span>G. Wholesale and Retail Trade; Repair of Motor Vehicles and Motorcycles</span></div>
-            <div style="display:flex; align-items:flex-start; gap:0.5rem; min-width:0;"><span style="width:11px;height:11px;border-radius:2px;background:#ffffb3;display:inline-block;flex:none;margin-top:0.2rem;"></span><span>Q. Human Health and Social Work Activities</span></div>
-            <div style="display:flex; align-items:flex-start; gap:0.5rem; min-width:0;"><span style="width:11px;height:11px;border-radius:2px;background:#1f78b4;display:inline-block;flex:none;margin-top:0.2rem;"></span><span>H. Transportation and Storage</span></div>
-            <div style="display:flex; align-items:flex-start; gap:0.5rem; min-width:0;"><span style="width:11px;height:11px;border-radius:2px;background:#bebada;display:inline-block;flex:none;margin-top:0.2rem;"></span><span>R. Arts, Entertainment and Recreation</span></div>
-            <div style="display:flex; align-items:flex-start; gap:0.5rem; min-width:0;"><span style="width:11px;height:11px;border-radius:2px;background:#b2df8a;display:inline-block;flex:none;margin-top:0.2rem;"></span><span>I. Accommodation and Food Service Activities</span></div>
-            <div style="display:flex; align-items:flex-start; gap:0.5rem; min-width:0;"><span style="width:11px;height:11px;border-radius:2px;background:#80b1d3;display:inline-block;flex:none;margin-top:0.2rem;"></span><span>S. Other Service Activities</span></div>
-            <div style="display:flex; align-items:flex-start; gap:0.5rem; min-width:0;"><span style="width:11px;height:11px;border-radius:2px;background:#fb9a99;display:inline-block;flex:none;margin-top:0.2rem;"></span><span>J. Information and Communication</span></div>
-            <div style="display:flex; align-items:flex-start; gap:0.5rem; min-width:0;"><span style="width:11px;height:11px;border-radius:2px;background:#fdb462;display:inline-block;flex:none;margin-top:0.2rem;"></span><span>T. Activities of Households as Employers; Undifferentiated Household Activities</span></div>
-            <div style="display:flex; align-items:flex-start; gap:0.5rem; min-width:0;"><span style="width:11px;height:11px;border-radius:2px;background:#b3de69;display:inline-block;flex:none;margin-top:0.2rem;"></span><span>U. Activities of Extraterritorial Organisations and Bodies</span></div>
-          </div>
-        </figure>
       </div>
     </div>
   </div>
