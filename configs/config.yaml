@@ -1,0 +1,11 @@
+# All paths are relative to the repository root.
+paths:
+  # Released dataset (OSM records only)
+  data: data/Moneta/MONETA.json
+  # Enriched dataset with fetched Wikidata/Wikipedia/website text (built by the data pipeline)
+  data_extended: data/processed/MONETA_extended.json
+  nace_descriptions: data/filter/NACE_descriptions.json
+  osm_mapping: data/filter/osm_nace_mapping.xlsx
+  osm_images: data/processed/images/osm
+  satellite_images: data/processed/images/satellite
+  results: results
