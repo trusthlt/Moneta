@@ -6,10 +6,22 @@ paths:
   data_extended: data/processed/MONETA_extended.json
   nace_descriptions: data/filter/NACE_descriptions.json
   osm_mapping: data/filter/osm_nace_mapping.xlsx
+  processed: data/processed
   osm_images: data/processed/images/osm
   satellite_images: data/processed/images/satellite
   results: results
   clues: results/clues
+
+# Data construction (moneta/preprocess)
+preprocess:
+  user_agent: "MONETA-research/1.0 (+https://github.com/trusthlt/Moneta)"
+  osm_tiles: "https://tile.openstreetmap.org/{z}/{x}/{y}.png"
+  satellite_tiles: "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
+  min_zoom: 14
+  max_zoom: 18
+  max_tiles: 3
+  tile_size: 256
+  min_span: 0.002
 
 # Model name (as used in run names) -> HF Hub id + revision matching the paper runs.
 # Set `path` to a local directory (and `revision: null`) to use pre-downloaded weights.
