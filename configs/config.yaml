@@ -9,3 +9,17 @@ paths:
   osm_images: data/processed/images/osm
   satellite_images: data/processed/images/satellite
   results: results
+
+# Model name (as used in run names) -> HF Hub id. Replace a value with a local
+# directory to load pre-downloaded weights.
+models:
+  Qwen2.5-VL-7B: Qwen/Qwen2.5-VL-7B-Instruct
+  Qwen2.5-VL-32B: Qwen/Qwen2.5-VL-32B-Instruct
+  Qwen2.5-VL-72B: Qwen/Qwen2.5-VL-72B-Instruct
+  InternVL2_5-1B: OpenGVLab/InternVL2_5-1B
+  InternVL2_5-4B: OpenGVLab/InternVL2_5-4B
+  InternVL2_5-38B: OpenGVLab/InternVL2_5-38B
+  InternVL3-8B: OpenGVLab/InternVL3-8B
+  InternVL3-14B: OpenGVLab/InternVL3-14B
+  InternVL3-38B: OpenGVLab/InternVL3-38B
+  InternVL3-78B: OpenGVLab/InternVL3-78B
