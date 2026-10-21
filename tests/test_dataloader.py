@@ -77,6 +77,12 @@ def test_limit(setup):
     assert len(MonetaDataset(data_resources=[], limit=2)) == 2
 
 
+def test_non_positive_limit_raises(setup):
+    setup([raw_record()])
+    with pytest.raises(ValueError, match="limit"):
+        MonetaDataset(data_resources=[], limit=0)
+
+
 def test_unknown_resource_raises(setup):
     setup([raw_record()])
     with pytest.raises(ValueError, match="Unknown data resources"):
@@ -92,8 +98,21 @@ def test_missing_images_raise(setup):
 def test_source_on_unenriched_data_raises(setup):
     # Raw MONETA.json records hold links in tags, not fetched text
     setup([raw_record(website="https://example.com")])
-    with pytest.raises(ValueError, match="not enriched"):
+    with pytest.raises(ValueError, match="no fetched source text"):
         MonetaDataset(data_resources=["source"])
+
+
+def test_in_place_enriched_format(setup):
+    # Enriched in place (MONETA-10K): text replaces links in tags; failed fetches keep the link
+    setup(
+        [
+            raw_record(website="We bake bread"),
+            {**raw_record(website="http://x.de"), "id": 2},
+        ]
+    )
+    first, second = MonetaDataset(data_resources=["source"]).data
+    assert first.sources.website == "We bake bread"
+    assert second.sources.website == "http://x.de"
 
 
 def test_clues_from_history_and_clues_key(setup):
@@ -130,5 +149,5 @@ def test_released_moneta_json():
 def test_source_without_any_text_raises(setup):
     # Dumped records count as enriched; a run without 'source' leaves them empty
     setup([{**raw_record(), "sources": None}])
-    with pytest.raises(ValueError, match="no record"):
+    with pytest.raises(ValueError, match="no fetched source text"):
         MonetaDataset(data_resources=["source"])

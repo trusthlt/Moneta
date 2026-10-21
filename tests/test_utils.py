@@ -11,7 +11,7 @@ from moneta.schema.experiment import (
 )
 from moneta.utils import (
     generate_folder_name,
-    model_name_to_path,
+    model_source,
     parse_folder_name,
     parse_json_response,
     read_json_list,
@@ -150,8 +150,32 @@ def test_read_json_list_infers_jsonl(tmp_path):
     assert read_json_list(tmp_path / "a.json") == [{"id": 1}]
 
 
-def test_model_name_to_path():
-    config = {"models": {"InternVL3-8B": "OpenGVLab/InternVL3-8B"}}
-    assert model_name_to_path("InternVL3-8B", config) == "OpenGVLab/InternVL3-8B"
+def test_model_source():
+    config = {
+        "models": {
+            "InternVL3-8B": {"path": "OpenGVLab/InternVL3-8B", "revision": "abc"}
+        }
+    }
+    assert model_source("InternVL3-8B", config) == ("OpenGVLab/InternVL3-8B", "abc")
     with pytest.raises(ValueError):
-        model_name_to_path("Llava-v1.6-7B", config)
+        model_source("Llava-v1.6-7B", config)
+
+
+def test_load_config_local_override(tmp_path):
+    (tmp_path / "config.yaml").write_text(
+        "paths:\n  data: a.json\n  results: results\nmodels:\n  M: {path: hub/M}\n"
+    )
+    (tmp_path / "local.yaml").write_text(
+        "models:\n  M: {path: /weights/M, revision: null}\n"
+    )
+    from moneta.utils import load_config
+
+    config = load_config(tmp_path / "config.yaml", tmp_path / "local.yaml")
+    assert config["models"]["M"]["path"] == "/weights/M"
+    assert config["paths"] == {"data": "a.json", "results": "results"}
+    assert (
+        load_config(tmp_path / "config.yaml", tmp_path / "missing.yaml")["models"]["M"][
+            "path"
+        ]
+        == "hub/M"
+    )

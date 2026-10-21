@@ -19,3 +19,9 @@ def test_released_data_is_present():
     config = yaml.safe_load((ROOT / "configs" / "config.yaml").read_text())
     for key in ("data", "nace_descriptions", "osm_mapping"):
         assert (ROOT / config["paths"][key]).exists(), f"missing paths.{key}"
+
+
+def test_models_have_path_and_revision():
+    config = yaml.safe_load((ROOT / "configs" / "config.yaml").read_text())
+    for name, source in config["models"].items():
+        assert source["path"] and source["revision"], name

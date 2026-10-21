@@ -30,7 +30,7 @@ test:
 ## Serve the project website at http://localhost:8000
 .PHONY: website
 website:
-	uv run python -m http.server 8000
+	uv run python -m http.server 8000 --bind 127.0.0.1
 
 ## Show available targets
 .PHONY: help

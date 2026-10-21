@@ -9,9 +9,12 @@ osm_tags and, depending on data_resources:
 Clues (multi-turn) are read from `history.<modality>_clues` or `clues.<modality>`.
 
 Two record formats are accepted:
-- raw:    {id, type, tags, bbox, category, ...} (MONETA.json / MONETA_extended.json)
+- raw:    {id, type, tags, bbox, category, ...}; in enriched files the fetched text
+          replaces the links in tags.{wikidata,wikipedia,website} (failed fetches keep the link)
 - dumped: MultimodalInputSchema dumps (e.g. clue files) with osm_tags / sources / history
 """
+
+import re
 
 from moneta.schema.data import (
     HistorySchema,
@@ -34,9 +37,8 @@ def _get_history(elem) -> HistorySchema:
     return HistorySchema(**{f"{m}_clues": clues.get(m) for m in CLUE_MODALITIES})
 
 
-def _is_enriched(elem) -> bool:
-    """Enriched records keep the original links top-level and the fetched text in tags."""
-    return "sources" in elem or any(key in elem for key in SOURCE_KEYS)
+# A raw link as stored in OSM tags: URL, Wikidata QID or Wikipedia "lang:Title"
+LINK = re.compile(r"(https?://|www\.)\S+|Q\d+|[a-z-]{2,12}:[^\n]+")
 
 
 class MonetaDataset:
@@ -51,6 +53,8 @@ class MonetaDataset:
             raise ValueError(
                 f"Unknown data resources {sorted(unknown)}; valid: {sorted(VALID_RESOURCES)}"
             )
+        if limit is not None and limit <= 0:
+            raise ValueError(f"limit must be positive, got {limit}")
         self.config = load_config()
         self.input_types = data_resources
         if data_path is None:
@@ -60,21 +64,17 @@ class MonetaDataset:
         if not self.data_path.exists():
             raise FileNotFoundError(f"Dataset not found: {self.data_path}")
 
-        records = read_json_list(self.data_path)[:limit]
-        self.data = [self._modify_input(record) for record in records]
+        records = read_json_list(self.data_path)
+        if "source" in data_resources:
+            self._check_sources(records)
+        self.data = [self._modify_input(record) for record in records[:limit]]
         self._check_image_paths()
-        if "source" in data_resources and not any(
-            any(item.sources.model_dump().values()) for item in self.data
-        ):
-            raise ValueError(
-                f"'source' requested but no record in {self.data_path} has source text."
-            )
 
     def __len__(self) -> int:
         return len(self.data)
 
     def _modify_input(self, elem):
-        tags = elem.get("tags") or elem.get("osm_tags") or {}
+        tags = elem.get("tags") or elem.get("osm_tags")
         item = {
             "id": elem["id"],
             "type": elem["type"],
@@ -92,11 +92,6 @@ class MonetaDataset:
     def _get_sources(self, elem):
         if "source" not in self.input_types:
             return SourceSchema()
-        if not _is_enriched(elem):
-            raise ValueError(
-                f"'source' requested but {self.data_path} is not enriched "
-                "(tags hold links, not fetched text). Build the enriched dataset first."
-            )
         if "sources" in elem:
             return SourceSchema(**(elem["sources"] or {}))
         tags = elem.get("tags") or {}
@@ -114,6 +109,26 @@ class MonetaDataset:
                 resolve_path(self.config["paths"]["satellite_images"]) / file_name
             )
         return ImagePathsSchema(**paths)
+
+    def _check_sources(self, records):
+        """Fail if the file is not enriched: (almost) all source values are still links.
+        Enriched paper files: ~25% links (failed fetches); raw MONETA.json: >99%."""
+        values = [
+            v.strip()
+            for r in records
+            for v in (
+                (r.get("sources") or {}).values()
+                if "sources" in r
+                else [r["tags"].get(k) for k in SOURCE_KEYS]
+            )
+            if v
+        ]
+        links = sum(bool(LINK.fullmatch(v)) for v in values)
+        if not values or links / len(values) > 0.9:
+            raise ValueError(
+                f"'source' requested but {self.data_path} has no fetched source text "
+                f"({links}/{len(values)} values are links). Use the enriched dataset."
+            )
 
     def _check_image_paths(self):
         missing = [
