@@ -9,6 +9,7 @@ _old/
 .venv/
 notebooks/
 slurm/
+configs/local.yaml
 
 # Secrets
 .env

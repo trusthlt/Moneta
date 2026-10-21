@@ -9,17 +9,38 @@ paths:
   osm_images: data/processed/images/osm
   satellite_images: data/processed/images/satellite
   results: results
+  clues: results/clues
 
-# Model name (as used in run names) -> HF Hub id. Replace a value with a local
-# directory to load pre-downloaded weights.
+# Model name (as used in run names) -> HF Hub id + revision matching the paper runs.
+# Set `path` to a local directory (and `revision: null`) to use pre-downloaded weights.
 models:
-  Qwen2.5-VL-7B: Qwen/Qwen2.5-VL-7B-Instruct
-  Qwen2.5-VL-32B: Qwen/Qwen2.5-VL-32B-Instruct
-  Qwen2.5-VL-72B: Qwen/Qwen2.5-VL-72B-Instruct
-  InternVL2_5-1B: OpenGVLab/InternVL2_5-1B
-  InternVL2_5-4B: OpenGVLab/InternVL2_5-4B
-  InternVL2_5-38B: OpenGVLab/InternVL2_5-38B
-  InternVL3-8B: OpenGVLab/InternVL3-8B
-  InternVL3-14B: OpenGVLab/InternVL3-14B
-  InternVL3-38B: OpenGVLab/InternVL3-38B
-  InternVL3-78B: OpenGVLab/InternVL3-78B
+  Qwen2.5-VL-7B:
+    path: Qwen/Qwen2.5-VL-7B-Instruct
+    revision: cc594898137f460bfe9f0759e9844b3ce807cfb5
+  Qwen2.5-VL-32B:
+    path: Qwen/Qwen2.5-VL-32B-Instruct
+    revision: 7cfb30d71a1f4f49a57592323337a4a4727301da
+  Qwen2.5-VL-72B:
+    path: Qwen/Qwen2.5-VL-72B-Instruct
+    revision: 89c86200743eec961a297729e7990e8f2ddbc4c5
+  InternVL2_5-1B:
+    path: OpenGVLab/InternVL2_5-1B
+    revision: f27984381d99c1f2da11989d3216ca7b5bb51721
+  InternVL2_5-4B:
+    path: OpenGVLab/InternVL2_5-4B
+    revision: 1b025ceefbf673f95793e8ed988f15525a0f4f8c
+  InternVL2_5-38B:
+    path: OpenGVLab/InternVL2_5-38B
+    revision: f44c4edc643d7e573a708d2371c6d4c0036a7ae6
+  InternVL3-8B:
+    path: OpenGVLab/InternVL3-8B
+    revision: 853e3a797a661694b1b8ece0cb72dc2b23e3dac9
+  InternVL3-14B:
+    path: OpenGVLab/InternVL3-14B
+    revision: 419aa10d2db7da6c64382ad3124f79a60cec42aa
+  InternVL3-38B:
+    path: OpenGVLab/InternVL3-38B
+    revision: b99bcba4fe0c51d9e475af25ec000dbfea6284af
+  InternVL3-78B:
+    path: OpenGVLab/InternVL3-78B
+    revision: 4a42b163cc0e222e97b10b562eee98da6bf26077

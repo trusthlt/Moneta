@@ -32,9 +32,17 @@ def resolve_path(path: str | Path) -> Path:
     return path if path.is_absolute() else root_path() / path
 
 
-def load_config(path: str = "configs/config.yaml") -> dict:
+def load_config(
+    path: str = "configs/config.yaml", local: str = "configs/local.yaml"
+) -> dict:
+    """Load the config; sections of the optional, gitignored local file override entries (e.g. local weights)."""
     with open(resolve_path(path)) as f:
-        return yaml.safe_load(f)
+        config = yaml.safe_load(f)
+    if resolve_path(local).exists():
+        with open(resolve_path(local)) as f:
+            for section, values in (yaml.safe_load(f) or {}).items():
+                config.setdefault(section, {}).update(values)
+    return config
 
 
 def read_json_list(path, lines: bool | None = None) -> list:
@@ -54,12 +62,57 @@ def write_json(data, path) -> None:
         json.dump(data, f, indent=4, ensure_ascii=False)
 
 
-def model_name_to_path(model_name: str, config: dict | None = None) -> str:
-    """Map a model name (as used in run names) to a HF Hub id or local directory (configs/config.yaml: models)."""
+def model_source(model_name: str, config: dict | None = None) -> tuple[str, str | None]:
+    """(HF Hub id or local dir, revision) for a model name (configs/config.yaml: models)."""
     models = (config or load_config())["models"]
     if model_name not in models:
         raise ValueError(f"Unknown model name: {model_name}. Known: {sorted(models)}")
-    return models[model_name]
+    return models[model_name]["path"], models[model_name].get("revision")
+
+
+def output_root(output_dir, default_key: str, limit: int | None) -> Path:
+    """Output directory; --limit runs go to a limit<N>/ subfolder so they never overwrite full runs."""
+    root = resolve_path(output_dir or load_config()["paths"][default_key])
+    return root / f"limit{limit}" if limit else root
+
+
+def save_results(
+    results: list[dict],
+    pipeline: str,
+    exp_config: ExperimentConfigSchema,
+    run_info: dict,
+    output_dir=None,
+    limit: int | None = None,
+) -> Path:
+    """Write <output_dir>[/limit<N>]/<run name>/inference_results.json plus run_config.json."""
+    n_oom = sum(
+        "cuda OOM" in (r["llm_response"], r.get("llm_explanation")) for r in results
+    )
+    if n_oom:
+        logger.warning(f"{n_oom}/{len(results)} items hit CUDA OOM.")
+    folder = output_root(output_dir, "results", limit) / generate_folder_name(
+        pipeline, exp_config
+    )
+    write_json(results, folder / "inference_results.json")
+    write_json(
+        {"experiment": exp_config.model_dump(mode="json"), **run_info},
+        folder / "run_config.json",
+    )
+    logger.info(f"Saved {len(results)} results to {folder}")
+    return folder / "inference_results.json"
+
+
+def to_result(item, response: str, output_format: str) -> dict:
+    """Dump an input item with the model response (and parsed explanation for JSON output).
+    As in the paper runs, a JSON-mode OOM becomes ("parse_err", "cuda OOM")."""
+    result = item.model_dump()
+    if output_format == "Text":
+        result["llm_response"] = response
+    else:
+        result["llm_response"], result["llm_explanation"] = parse_json_response(
+            response
+        )
+    return result
 
 
 def repair_json_string_end(malformed_json_str):
