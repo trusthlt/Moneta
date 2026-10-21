@@ -9,8 +9,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # release-check compares data/ with an older commit
       - uses: astral-sh/setup-uv@v6
       - run: uv python install 3.13
       - run: make sync EXTRAS="--extra data"
       - run: make lint
       - run: make test
+      - run: make release-check
