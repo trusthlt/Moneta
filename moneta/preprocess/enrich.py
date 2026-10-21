@@ -173,12 +173,19 @@ async def enrich(records, user_agent: str, concurrency: int = 2):
         )
 
 
-def main(input_path=None, output_path=None, limit=None, concurrency=2) -> Path:
+def main(
+    input_path=None, output_path=None, limit=None, concurrency=2, overwrite=False
+) -> Path:
     config = load_config()
     input_path = resolve_path(input_path or config["paths"]["data"])
-    output_path = resolve_path(
-        output_path or Path(config["paths"]["processed"]) / "MONETA_extended_new.json"
-    )
+    if output_path is None:  # --limit runs never replace the full enriched file
+        default = resolve_path(config["paths"]["data_extended"])
+        output_path = (
+            default.parent / f"limit{limit}" / default.name if limit else default
+        )
+    output_path = resolve_path(output_path)
+    if output_path.exists() and not overwrite:
+        raise FileExistsError(f"{output_path} exists; pass --output or --overwrite")
     records = read_json_list(input_path)[:limit]
     enriched = asyncio.run(
         enrich(records, config["preprocess"]["user_agent"], concurrency)
@@ -204,9 +211,10 @@ if __name__ == "__main__":
     parser.add_argument(
         "--output",
         default=None,
-        help="Default: <paths.processed>/MONETA_extended_new.json",
+        help="Default: paths.data_extended",
     )
     parser.add_argument("--limit", type=int, default=None)
     parser.add_argument("--concurrency", type=int, default=2)
+    parser.add_argument("--overwrite", action="store_true")
     args = parser.parse_args()
-    main(args.input, args.output, args.limit, args.concurrency)
+    main(args.input, args.output, args.limit, args.concurrency, args.overwrite)

@@ -42,10 +42,10 @@ data-extract:
 data-sample:
 	uv run python -m moneta.preprocess.sample
 
-## Data step 4: fetch Wikidata/Wikipedia/website text (optional LIMIT=N)
+## Data step 4: fetch Wikidata/Wikipedia/website text (optional LIMIT=N, OVERWRITE=1)
 .PHONY: data-enrich
 data-enrich:
-	uv run python -m moneta.preprocess.enrich $(if $(LIMIT),--limit $(LIMIT))
+	uv run python -m moneta.preprocess.enrich $(if $(LIMIT),--limit $(LIMIT)) $(if $(OVERWRITE),--overwrite)
 
 ## Data step 5: download OSM + satellite images (optional LIMIT=N)
 .PHONY: data-images
@@ -56,6 +56,11 @@ data-images:
 .PHONY: data-download
 data-download:
 	@echo "TODO: hosted MONETA_extended + images not available yet; use data-enrich / data-images" && exit 1
+
+## Check tracked files for keys / machine paths and data/ for changes (run before pushing)
+.PHONY: release-check
+release-check:
+	./scripts/release_check.sh
 
 ## Serve the project website at http://localhost:8000
 .PHONY: website

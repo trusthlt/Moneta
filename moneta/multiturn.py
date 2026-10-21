@@ -13,7 +13,7 @@ from moneta.dataloader.moneta import MonetaDataset
 from moneta.models import get_model
 from moneta.prompts.builder import generate_multi_turn_prompt
 from moneta.schema.experiment import ExperimentConfigSchema, ModelConfigSchema
-from moneta.utils import get_logger, load_config, resolve_path, save_results, to_result
+from moneta.utils import get_logger, output_root, save_results, to_result
 
 logger = get_logger()
 
@@ -59,12 +59,15 @@ def main(
     exp_config: ExperimentConfigSchema, clue_path=None, output_dir=None, limit=None
 ):
     settings = exp_config.model_settings
-    clue_path = (
-        clue_path
-        or resolve_path(load_config()["paths"]["clues"])
-        / settings.model_name
-        / "clues.json"
-    )
+    if (
+        clue_path is None
+    ):  # clues of a matching --limit run if present, else of the full run
+        candidates = [
+            output_root(None, "clues", limit),
+            output_root(None, "clues", None),
+        ]
+        paths = [c / settings.model_name / "clues.json" for c in candidates]
+        clue_path = next((p for p in paths if p.exists()), paths[-1])
     dataset = MonetaDataset([], data_path=clue_path, limit=limit)
     logger.info(f"Loaded clues for {len(dataset)} items from {dataset.data_path}")
     model = get_model(settings)
