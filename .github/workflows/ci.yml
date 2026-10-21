@@ -11,6 +11,6 @@ jobs:
       - uses: actions/checkout@v4
       - uses: astral-sh/setup-uv@v6
       - run: uv python install 3.13
-      - run: make sync
+      - run: make sync EXTRAS="--extra data"
       - run: make lint
       - run: make test
