@@ -1,26 +1,37 @@
+# Local / editor
 cache/
-notebooks/
 .cache/
 .config/
 .local/
 _old/
 .idea/
-.venv/
 .vscode/
-results/
-Makefile
-pyproject.toml
+.venv/
+notebooks/
+slurm/
+
+# Secrets
 .env
+
+# Generated data and outputs (data/ itself is tracked)
+data/processed/
+results/
+logs/
+
+# Python
 __pycache__
 *.pyc
 *.pyo
 *.pyd
+*.egg-info
+*.egg
+.pytest_cache/
+.ruff_cache/
+
+# Large / binary
 *.db
 *.sqlite
 *.log
-*.egg-info
-*.egg
-*.sh
 *.zip
 *.tar.gz
 *.tar
@@ -29,6 +40,4 @@ __pycache__
 *.7z
 *.tar.bz2
 *.tar.xz
-*.txt
 *.osm.pbf
-*.lock
